@@ -1,6 +1,23 @@
-<html>
-  <head>
-<style>
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>SEMCOM Alumni Invitation</title>
+  
+  <link rel="icon" type="image/x-icon" href=".../assets/images/favicon.ico">
+
+  <!-- BOOTSTRAP & JS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://kit.fontawesome.com/a79beb4099.js" crossorigin="anonymous"></script>
+
+  <!-- BOXICON -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+
+
+  <style>
     /* header + description + form tweaks */
     body {
       background: #e5eaf5;
@@ -551,73 +568,6 @@
 
     </div>
   </footer>
-
-  <script>
-    $(function() {
-      // helper show/hide functions
-      function toggleStudySections() {
-        const val = $('input[name="study_from"]:checked').val();
-        $('#ug_section').toggle(val === 'UG' || val === 'BOTH');
-        $('#pg_section').toggle(val === 'PG' || val === 'BOTH');
-      }
-
-      function toggleOccupation() {
-        const val = $('input[name="occupation_type"]:checked').val();
-        $('#company_block').toggle(val === 'Job' || val === 'Business');
-        $('#occupation_other_block').toggle(val === 'Other');
-      }
-
-      function toggleAttendance() {
-        const val = $('input[name="will_attend"]:checked').val();
-        $('#members_block').toggle(val === 'Yes');
-      }
-
-      // initial state (on page load)
-      toggleStudySections();
-      toggleOccupation();
-      toggleAttendance();
-
-      // watchers
-      $('.study-from').on('change', toggleStudySections);
-      $('.occupation').on('change', toggleOccupation);
-      $('.will-attend').on('change', toggleAttendance);
-
-      // numeric-only enforcement for mobile & members fields
-      $('input[name="mobile"], input[name="secondary_mobile"], input[name="members_count"]').on('input', function() {
-        this.value = this.value.replace(/[^0-9]/g, '');
-      });
-
-      // simple client-side check on submit, keep it lightweight (server validates too)
-      $('#alumniForm').on('submit', function(e) {
-        // Check required radio groups visually
-        if (!$('input[name="study_from"]:checked').length) {
-          alert('Please select whether you completed UG, PG, or Both.');
-          e.preventDefault();
-          return false;
-        }
-        if (!$('input[name="occupation_type"]:checked').length) {
-          alert('Please select your Occupation.');
-          e.preventDefault();
-          return false;
-        }
-        return true;
-      });
-
-      // Reset handler: hide dynamic parts and clear selection
-      $('#btnReset').on('click', function() {
-        setTimeout(function() {
-          // small timeout to let default reset finish
-          $('input[type=radio]').prop('checked', false);
-          $('select').prop('selectedIndex', 0);
-          $('.hidden, #ug_section, #pg_section, #company_block, #occupation_other_block, #members_block').hide();
-        }, 10);
-      });
-    });
-  </script>
-
 </body>
 
 </html>
-
-
-
